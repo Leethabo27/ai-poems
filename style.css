@@ -1,78 +1,67 @@
-/* General styles */
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f9;
   color: #333;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
   text-align: center;
 }
 
-/* Header styles */
 h1 {
   font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: #4a4a8f;
-  text-shadow: 2px 2px #d1d1e0;
-}
-
-/* Footer styles */
-footer {
-  font-size: 0.9rem;
-  color: #555;
   margin-top: 2rem;
-}
-
-footer a {
   color: #4a4a8f;
-  text-decoration: none;
-  font-weight: bold;
 }
 
-footer a:hover {
-  text-decoration: underline;
+p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
-/* Button styles */
+input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 400px;
+}
+
 button {
   background-color: #4a4a8f;
   color: white;
   border: none;
   padding: 10px 20px;
-  margin: 1rem 0;
+  margin-top: 1rem;
   font-size: 1rem;
   cursor: pointer;
   border-radius: 5px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 }
 
 button:hover {
   background-color: #3c3c71;
 }
 
-/* Input styles */
-input[type="text"] {
-  padding: 10px;
-  width: 80%;
-  max-width: 400px;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
+.result {
+  margin-top: 1.5rem;
+  padding: 20px;
+  font-size: 1.2rem;
+  border: 1px solid #ddd;
+  background-color: #fff;
   border-radius: 5px;
-  font-size: 1rem;
 }
 
-/* Responsive design */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 2rem;
-  }
-
-  footer {
-    font-size: 0.8rem;
-  }
+footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
 }
+
+footer a {
+  color: #4a4a8f;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+

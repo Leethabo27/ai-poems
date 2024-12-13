@@ -1,79 +1,59 @@
-// DOM elements
-const generateButton = document.getElementById("generateButton");
-const clearButton = document.getElementById("clearButton");
-const poemInput = document.getElementById("poemInput");
-const poemResult = document.getElementById("poemResult");
-const loadingSpinner = document.getElementById("loadingSpinner");
+// Select DOM elements
+const poemInput = document.getElementById('poemInput');
+const generateButton = document.getElementById('generateButton');
+const clearButton = document.getElementById('clearButton');
+const loadingSpinner = document.getElementById('loadingSpinner');
+const poemResult = document.getElementById('poemResult');
 
-// API key and URL
-const apiKey = "2c95a04203o5bat4acd327d7c89f7e04";
-const apiUrl = "https://api.shecodes.io/ai/v1/generate";
+// API Key and Endpoint
+const API_KEY = '2c95a04203o5bat4acd327d7c89f7e04'; // Replace with your valid key
+const API_URL = 'https://api.shecodes.io/ai/v1/generate';
 
-// Function to show the loading spinner
-function showLoadingSpinner() {
-  loadingSpinner.classList.remove("hidden");
-}
+// Function to generate a poem
+const generatePoem = async () => {
+  const topic = poemInput.value.trim();
 
-// Function to hide the loading spinner
-function hideLoadingSpinner() {
-  loadingSpinner.classList.add("hidden");
-}
+  // Validate input
+  if (!topic) {
+    alert('Please enter a theme or keyword!');
+    return;
+  }
 
-// Function to fetch a poem
-async function fetchPoem(prompt) {
+  // Show loading spinner and clear previous result
+  loadingSpinner.classList.remove('hidden');
+  poemResult.innerHTML = '';
+
   try {
-    // Show loading spinner
-    showLoadingSpinner();
-
-    // Fetch data from the API
-    const response = await fetch(
-      `${apiUrl}?prompt=${encodeURIComponent(prompt)}&context=poem&key=${apiKey}`
-    );
-
+    // Send request to API
+    const response = await fetch(`${API_URL}?prompt=Write a poem about ${encodeURIComponent(topic)}&key=${API_KEY}`);
     if (!response.ok) {
-      throw new Error("Failed to fetch poem. Please try again.");
+      throw new Error(`Error: ${response.statusText}`);
     }
 
+    // Parse and display the poem
     const data = await response.json();
-
-    // Display the generated poem
-    if (data.response) {
-      poemResult.innerHTML = `<p>${data.response}</p>`;
+    if (data.answer) {
+      poemResult.innerHTML = `<h2>Your Poem:</h2><p>${data.answer}</p>`;
     } else {
-      poemResult.textContent = "No poem generated. Please try again.";
+      poemResult.innerHTML = '<p>Sorry, no poem was generated. Try again with a different topic!</p>';
     }
   } catch (error) {
-    // Handle errors
-    poemResult.textContent = `Error: ${error.message}`;
+    console.error('Error generating poem:', error);
+    poemResult.innerHTML = '<p>Failed to generate a poem. Please try again later.</p>';
   } finally {
     // Hide loading spinner
-    hideLoadingSpinner();
+    loadingSpinner.classList.add('hidden');
   }
-}
+};
 
-// Clear input and result
-function clearFields() {
-  poemInput.value = "";
-  poemResult.textContent = "";
-}
+// Function to clear input and result
+const clearFields = () => {
+  poemInput.value = '';
+  poemResult.innerHTML = '';
+};
 
-// Event listener for the generate button
-generateButton.addEventListener("click", () => {
-  const prompt = poemInput.value.trim();
-  if (prompt) {
-    fetchPoem(prompt);
-  } else {
-    poemResult.textContent = "Please enter a theme or keyword!";
-  }
-});
+// Event Listeners
+generateButton.addEventListener('click', generatePoem);
+clearButton.addEventListener('click', clearFields);
 
-// Event listener for the clear button
-clearButton.addEventListener("click", clearFields);
-
-// Allow pressing Enter to generate the poem
-poemInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    generateButton.click();
-  }
-});
 

@@ -2,16 +2,14 @@
 document.getElementById('poem-form').addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  // Get the user's input
   const topic = document.getElementById('topic').value.trim();
 
-  // Display loading text
   const poemElement = document.getElementById('poem');
   poemElement.textContent = 'Generating poem...';
   document.getElementById('result').style.display = 'block';
 
   try {
-    // Fetch data from the API
+    // Fetch data from the API (using SheCodes AI API here)
     const response = await fetch(
       `https://api.shecodes.io/ai/v1/generate?prompt=Write a beautiful poem about ${encodeURIComponent(
         topic
@@ -20,7 +18,6 @@ document.getElementById('poem-form').addEventListener('submit', async (e) => {
 
     const data = await response.json();
 
-    // Handle the response
     if (data.answer) {
       poemElement.textContent = data.answer.trim();
     } else {
@@ -32,8 +29,9 @@ document.getElementById('poem-form').addEventListener('submit', async (e) => {
   }
 });
 
-// Attach event listener to clear button
+// Clear the input and result area
 document.getElementById('clearButton').addEventListener('click', () => {
   document.getElementById('topic').value = '';
   document.getElementById('result').style.display = 'none';
 });
+

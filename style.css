@@ -10,12 +10,35 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Header */
 header {
   margin-bottom: 30px;
   color: white;
+  animation: bounceInDown 1.5s ease-out;
+}
+
+@keyframes bounceInDown {
+  0% {
+    transform: translateY(-1000px);
+  }
+  60% {
+    transform: translateY(30px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 h1 {
@@ -27,7 +50,7 @@ p {
   font-size: 1.2rem;
 }
 
-/* Form Styles */
+/* Form Styling */
 #poem-form {
   display: flex;
   flex-direction: column;
@@ -43,6 +66,14 @@ input {
   border-radius: 8px;
   width: 60%;
   max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: 0.3s ease-in-out;
+}
+
+input:focus {
+  outline: none;
+  border-color: #feb47b;
+  box-shadow: 0 0 10px rgba(255, 126, 95, 0.7);
 }
 
 button {
@@ -54,7 +85,7 @@ button {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
@@ -63,7 +94,12 @@ button:hover {
 }
 
 button:active {
+  transform: scale(0.98);
   background-color: #ff7e5f;
+}
+
+button:focus {
+  outline: none;
 }
 
 /* Result Styles */
@@ -75,13 +111,16 @@ button:active {
   max-width: 600px;
   margin: 20px auto;
   display: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
 }
 
 #poem {
   font-size: 1.2rem;
   font-style: italic;
   color: #555;
+  line-height: 1.6;
 }
 
 /* Footer */
@@ -89,6 +128,7 @@ footer {
   margin-top: 30px;
   font-size: 1rem;
   color: white;
+  animation: fadeIn 1.5s ease-out;
 }
 
 footer a {

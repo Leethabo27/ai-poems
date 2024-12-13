@@ -5,12 +5,8 @@ const clearButton = document.getElementById('clearButton');
 const loadingSpinner = document.getElementById('loadingSpinner');
 const poemResult = document.getElementById('poemResult');
 
-// API Key and Endpoint
-const API_KEY = '2c95a04203o5bat4acd327d7c89f7e04'; // Replace with your valid key
-const API_URL = 'https://api.shecodes.io/ai/v1/generate';
-
-// Function to generate a poem
-const generatePoem = async () => {
+// Function to generate a random poem
+const generatePoem = () => {
   const topic = poemInput.value.trim();
 
   // Validate input
@@ -19,31 +15,30 @@ const generatePoem = async () => {
     return;
   }
 
-  // Show loading spinner and clear previous result
+  // Show loading spinner
   loadingSpinner.classList.remove('hidden');
   poemResult.innerHTML = '';
 
-  try {
-    // Send request to API
-    const response = await fetch(`${API_URL}?prompt=Write a poem about ${encodeURIComponent(topic)}&key=${API_KEY}`);
-    if (!response.ok) {
-      throw new Error(`Error: ${response.statusText}`);
-    }
-
-    // Parse and display the poem
-    const data = await response.json();
-    if (data.answer) {
-      poemResult.innerHTML = `<h2>Your Poem:</h2><p>${data.answer}</p>`;
-    } else {
-      poemResult.innerHTML = '<p>Sorry, no poem was generated. Try again with a different topic!</p>';
-    }
-  } catch (error) {
-    console.error('Error generating poem:', error);
-    poemResult.innerHTML = '<p>Failed to generate a poem. Please try again later.</p>';
-  } finally {
-    // Hide loading spinner
+  // Simulate a delay for loading spinner
+  setTimeout(() => {
     loadingSpinner.classList.add('hidden');
-  }
+    
+    // Generate a simple poem based on the topic
+    const poemLines = [
+      `Oh ${topic}, how you inspire,`,
+      `A spark of thought, a burning fire.`,
+      `With every word, you paint the skies,`,
+      `A world of wonder before our eyes.`,
+      '',
+      `Through shadows dark and mornings bright,`,
+      `You lead us gently toward the light.`,
+      `Oh ${topic}, you're a work of art,`,
+      `A beating rhythm within the heart.`
+    ];
+
+    // Display the poem
+    poemResult.innerHTML = `<h2>Your Poem:</h2><p>${poemLines.join('<br>')}</p>`;
+  }, 1000); // Simulates a 1-second "loading" delay
 };
 
 // Function to clear input and result
@@ -55,5 +50,6 @@ const clearFields = () => {
 // Event Listeners
 generateButton.addEventListener('click', generatePoem);
 clearButton.addEventListener('click', clearFields);
+
 
 

@@ -1,41 +1,42 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Poem Generator</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header>
-      <h1>AI Poem Generator</h1>
-      <p>Enter a theme or keyword, and let the AI create a beautiful poem for you!</p>
-    </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Poem Generator</title>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI Poem Generator</h1>
+    <p>Enter a theme or keyword, and let the AI create a beautiful poem for you!</p>
+  </header>
 
-    <main>
-      <div class="input-container">
-        <input
-          id="poemInput"
-          type="text"
-          placeholder="Enter a theme or keyword"
-          aria-label="Enter a theme or keyword"
-        />
-        <button id="generateButton">Generate Poem</button>
-        <button id="clearButton" class="secondary">Clear</button>
-      </div>
-      <div id="loadingSpinner" class="spinner hidden"></div>
-      <div id="poemResult" class="result"></div>
-    </main>
+  <main>
+    <form id="poem-form">
+      <input id="topic" type="text" placeholder="Enter a theme or keyword" required />
+      <button type="submit">Generate Poem</button>
+      <button type="button" id="clearButton">Clear</button>
+    </form>
+    <div id="result" style="display: none;">
+      <p id="poem">Generating poem...</p>
+    </div>
+  </main>
 
-    <footer>
-      <p>
-        Created by <a href="https://github.com/Leethabo27/" target="_blank">Lethabo Semenya</a> |
-        <a href=""https://soft-squirrel-ee78b5.netlify.app/ target="_blank">Hosted on Netlify</a>
-      </p>
-    </footer>
+  <footer>
+    <p>
+      Created by <a href="https://github.com/Leethabo27/" target="_blank">Lethabo Semenya</a> |
+      <a href="https://soft-squirrel-ee78b5.netlify.app/" target="_blank">Hosted on Netlify</a>
+    </p>
+  </footer>
 
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
+
 
 
 

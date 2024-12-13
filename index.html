@@ -3,44 +3,158 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Poem Generator</title>
+    <title>AI Content Generator</title>
     <style>
-      .hidden {
+      /* General Body Styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+      }
+
+      /* Header Styles */
+      .header {
+        background-color: #ffcc00;
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 3em;
+        margin: 0;
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      /* Form Styles */
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+      }
+
+      input[type="text"] {
+        padding: 12px;
+        width: 300px;
+        margin-bottom: 20px;
+        font-size: 1.2em;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 12px 30px;
+        font-size: 1.2em;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .hint {
+        font-size: 1.1em;
+        color: gray;
+        margin-bottom: 10px;
+      }
+
+      #generated-content {
+        margin-top: 30px;
+        font-size: 1.5em;
+        color: #333;
+        padding: 20px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        width: 80%;
+        max-width: 800px;
+        text-align: center;
         display: none;
+      }
+
+      /* Responsive Styling */
+      @media (max-width: 600px) {
+        .form-container {
+          width: 100%;
+          padding: 20px;
+        }
+
+        input[type="text"],
+        button {
+          width: 100%;
+        }
       }
     </style>
   </head>
   <body>
-    <header>
-      <h1>AI Poem Generator</h1>
-      <p>Enter a theme or keyword, and let the AI create a beautiful poem for you!</p>
+    <!-- Header Section -->
+    <header class="header">
+      <h1>AI Content Generator</h1>
+      <p>
+        Coded with ❤️ by
+        <a
+          href="https://www.linkedin.com/in/lethabo-lettah-semenya-80aa81282/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3BCD28AFcxQ%2BS0fwdHPve7ew%3D%3D"
+          target="_blank"
+          >Lethabo Semenya</a
+        >
+      </p>
+      <p>
+        Coding workshops for busy women by
+        <a href="https://www.shecodes.io/" target="_blank">SheCodes</a>.
+      </p>
     </header>
 
-    <main>
-      <form id="poem-form">
+    <!-- Form Section -->
+    <div class="form-container">
+      <form id="content-form">
+        <div class="hint">i.e: Poem, Jokes, Recipes, Quotes, etc.</div>
         <input
-          id="topic"
           type="text"
-          placeholder="Enter a theme or keyword"
+          id="input-topic"
+          placeholder="Enter the topic of the content"
           required
         />
-        <button type="submit">Generate Poem</button>
-        <button type="button" id="clearButton">Clear</button>
+        <button type="submit">Generate Content</button>
       </form>
+      <div id="generated-content" class="poem"></div>
+    </div>
 
-      <div id="result" style="display: none;">
-        <p id="poem">Generating poem...</p>
-      </div>
-    </main>
+    <script>
+      document
+        .getElementById("content-form")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
 
-    <footer>
-      <p>
-        Created by <a href="https://github.com/Leethabo27/" target="_blank">Lethabo Semenya</a> |
-        <a href="https://soft-squirrel-ee78b5.netlify.app/" target="_blank">Hosted on Netlify</a>
-      </p>
-    </footer>
+          const topic = document.getElementById("input-topic").value;
+          const response = await fetch(
+            `https://api.shecodes.io/ai/v1/generate?prompt=${topic}&key=2c95a04203o5bat4acd327d7c89f7e04`
+          );
+          const data = await response.json();
 
-    <script src="script.js"></script>
+          const generatedContent = document.getElementById("generated-content");
+          if (data.answer) {
+            generatedContent.innerText = data.answer;
+            generatedContent.style.display = "block";
+          } else {
+            generatedContent.innerText =
+              "Sorry, there was an issue generating the content. Please try again.";
+            generatedContent.style.display = "block";
+          }
+        });
+    </script>
   </body>
 </html>
 

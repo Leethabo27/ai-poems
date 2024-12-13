@@ -1,26 +1,101 @@
+/* General Styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: #333;
   text-align: center;
-  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Header */
+header {
+  margin-bottom: 30px;
+  color: white;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+/* Form Styles */
+#poem-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 input {
-  padding: 10px;
-  font-size: 16px;
+  padding: 12px;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  width: 60%;
+  max-width: 400px;
 }
 
 button {
-  padding: 10px 15px;
-  font-size: 16px;
+  padding: 12px 20px;
+  font-size: 1.2rem;
   margin: 10px;
+  background-color: #fff;
+  color: #ff7e5f;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
+button:hover {
+  background-color: #feb47b;
+  color: white;
+}
+
+button:active {
+  background-color: #ff7e5f;
+}
+
+/* Result Styles */
 #result {
-  margin-top: 20px;
-  background: #f0f0f0;
+  background-color: white;
+  color: #333;
   padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 20px auto;
+  display: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+#poem {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* Footer */
 footer {
   margin-top: 30px;
+  font-size: 1rem;
+  color: white;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
